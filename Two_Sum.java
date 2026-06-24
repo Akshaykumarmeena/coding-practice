@@ -6,6 +6,16 @@ Given an array of integers nums and an integer target, return the indices of the
     Explanation: nums[0] + nums[1] = 2 + 7 = 9
 
 
+/*
+ * Problem: Two Sum
+ * Pattern: HashMap
+ * Time: O(n), Space: O(n)
+ * Key insight: for each element, check if (target - nums[i]) already exists in map
+ * Gotcha: check BEFORE inserting to avoid using same element twice
+ * Gotcha: uninitialized int[] is [0,0] not empty — use [-1,-1] as sentinel
+ */
+
+  
   public int[] twoSum(int[] nums, int target){
 
           HashMap<Integer,Integer> map = new HashMap<>();
