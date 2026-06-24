@@ -7,6 +7,15 @@ Example:
       Input: nums = [1, 2, 3, 4]
       Output: false
 
+/*
+ * Problem: Contains Duplicate
+ * Pattern: HashSet
+ * Time: O(n), Space: O(n)
+ * Key insight: HashSet not HashMap — you only need presence, not key-value mapping
+ * Gotcha: HashSet.add() returns false if element already exists — can use as one-liner check
+ */
+
+
 
 ```java
 public boolean isDuplicate(int[] nums){
