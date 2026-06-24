@@ -8,6 +8,18 @@ A phrase is a palindrome if, after converting all uppercase letters to lowercase
             Output: false
 
 
+/*
+ * Problem: Valid Palindrome
+ * Pattern: Two Pointers
+ * Time: O(n), Space: O(1)
+ * Key insight: skip non-alphanumeric from both ends, compare inward
+ * Gotcha: String.toLowerCase() returns new String — must reassign or use ASCII math
+ * Gotcha: uppercase range 65-90 must be included in isAlphanumeric check
+ * Optimization: convert to lowercase via ASCII (a + 32) to avoid O(n) extra space
+ */
+
+
+      
   static boolean isAlphanumeric(int a){
         
         if((a>=97 && a <=122) || (a>=48 && a<= 57) || (a>=65 && a<= 90))
