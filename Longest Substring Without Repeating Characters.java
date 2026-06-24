@@ -14,7 +14,19 @@ Given a string s, find the length of the longest substring that contains no repe
       Output: 3
       Explanation: "wke"
 
+/*
+ * Problem: Longest Substring Without Repeating Characters
+ * Pattern: Sliding Window + HashSet
+ * Time: O(n), Space: O(n)
+ * Key insight: expand right freely, shrink left when duplicate found
+ * Gotcha: while condition should be set.contains(charAt(j)) — not charAt(i)==charAt(j)
+ * Gotcha: window size is j - i + 1, not j - i
+ * Gotcha: HashSet<Character> not HashSet<char> — no primitives in generics
+ */
 
+
+
+     
   // Brute Force approach
 
   1st one - two nested loop
