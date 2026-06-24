@@ -48,3 +48,21 @@ A phrase is a palindrome if, after converting all uppercase letters to lowercase
         return true;
         
     }
+
+
+
+// Brute Force approach
+
+static boolean Palindrome(String input){
+    // Step 1: clean the string
+    StringBuilder cleaned = new StringBuilder();
+    for(char c : input.toCharArray()){
+        if(Character.isLetterOrDigit(c)){
+            cleaned.append(Character.toLowerCase(c));
+        }
+    }
+    
+    // Step 2: compare with its reverse
+    String s = cleaned.toString();
+    String reversed = cleaned.reverse().toString();
+    return s.equals(reversed);
