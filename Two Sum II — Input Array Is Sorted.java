@@ -8,7 +8,18 @@ You must use O(1) extra space — meaning the HashMap approach from Two Sum I is
         Explanation: numbers[0] + numbers[1] = 2 + 7 = 9
 
   
-  
+/*
+ * Problem: Two Sum II
+ * Pattern: Two Pointers on sorted array
+ * Time: O(n), Space: O(1)
+ * Key insight: sorted array means sum too big → move right pointer left, too small → move left pointer right
+ * Gotcha: output is 1-based indices — return i+1, j+1
+ * Gotcha: HashMap approach is off the table — problem requires O(1) space
+ */
+
+
+
+    
   static int[] result(int[] nums, int target){
         
         int n = nums.length;
