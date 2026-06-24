@@ -11,6 +11,15 @@ Example:
       Explanation: prices only decrease, no profit possible
 
 
+/*
+ * Problem: Best Time to Buy and Sell Stock
+ * Pattern: Sliding Window (implicit)
+ * Time: O(n), Space: O(1)
+ * Key insight: track running minimum, at each day calculate profit if sold today
+ * Gotcha: check profit BEFORE updating min — ensures buy day is always before sell day
+ */
+
+
 
 // Brute Force
 
