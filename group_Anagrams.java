@@ -5,6 +5,17 @@ Given an array of strings strs, group the anagrams together. You can return the 
     Output: [["eat","tea","ate"],["tan","nat"],["bat"]]
 
 
+/*
+ * Problem: Group Anagrams
+ * Pattern: HashMap with sorted string as key
+ * Time: O(n * k log k), Space: O(n * k)
+ * Key insight: sorted version of anagrams is always identical — use as HashMap key
+ * Gotcha: char[] as key fails — Java compares object identity not contents
+ * Gotcha: List is an interface — instantiate with new ArrayList<>()
+ * Gotcha: use computeIfAbsent() for cleaner grouping logic
+ */
+
+    
 
 static List<List<String>> groupAnagram(List<String> input){
         
