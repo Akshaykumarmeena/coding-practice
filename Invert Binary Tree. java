@@ -44,3 +44,18 @@ static TreeNode inverse(TreeNode node){
     return node;
 }
 
+// To do it via swap function
+// You're passing node (the parent) — so inside swap, parent.left and parent.right are mutations on the actual object, not reassignments of copies
+
+static void swap(TreeNode parent){
+    TreeNode temp = parent.left;
+    parent.left = parent.right;
+    parent.right = temp;
+}
+
+static void inverse(TreeNode node){
+    if(node==null) return;
+    inverse(node.left);
+    inverse(node.right);
+    swap(node);  // pass the parent, not the children
+}
