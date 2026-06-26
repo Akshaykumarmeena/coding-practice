@@ -20,11 +20,11 @@ Example:
 /*
  * Problem: Lowest Common Ancestor of BST
  * Pattern: Tree DFS + BST property
- * Time: O(h), Space: O(h) — O(log n) balanced, O(n) skewed
- * Key insight: BST property tells you exactly which direction to go
- * If both p,q < root → go left. Both > root → go right. Otherwise → root is LCA
+ * Time: O(h), Space: O(h) recursive / O(1) iterative
+ * Key insight: BST property tells you exactly which direction to go at each step
+ * Both p,q < root → left. Both > root → right. Otherwise → root is LCA
  * Gotcha: root.val not root.value
- * Gotcha: always add null check even if problem guarantees valid input
+ * Prefer iterative — O(1) space vs O(h) recursive call stack
  */
 
 
