@@ -29,15 +29,22 @@ Example:
 
 
 
+// Recursive — O(h) time, O(h) space
 static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q){
-	
-	if(root == null) return null;	
+    if(root == null) return null;
+    if(root.val > p.val && root.val > q.val)
+        return lowestCommonAncestor(root.left, p, q);
+    if(root.val < p.val && root.val < q.val)
+        return lowestCommonAncestor(root.right, p, q);
+    return root;
+}
 
-	if(root.value > val && root.value > val)	
-		return lowestCommonAncestor(root.left, p,q);
-	
-	if(root.value < p.val && root.value < q.val)	
-		return lowestCommonAncestor(root.right, p,q);
-	
-	else return root;
+// Iterative — O(h) time, O(1) space (preferred)
+static TreeNode lowestCommonAncestorIterative(TreeNode root, TreeNode p, TreeNode q){
+    while(root != null){
+        if(root.val > p.val && root.val > q.val) root = root.left;
+        else if(root.val < p.val && root.val < q.val) root = root.right;
+        else return root;
+    }
+    return null;
 }
