@@ -24,3 +24,14 @@ You're climbing a staircase with n steps. Each move, you climb 1 or 2 steps. How
 	}
 	return arr[n];
 }
+
+
+// To make it O(1) space
+
+int prev = 1, curr = 1;
+for(int i = 2; i <= n; i++){
+    int next = prev + curr;
+    prev = curr;
+    curr = next;
+}
+return curr;
