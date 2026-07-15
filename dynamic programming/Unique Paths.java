@@ -33,3 +33,18 @@ A robot sits at the top-left corner of an m × n grid. It can only move right or
 	 }
 	return mat[m-1][n-1];
 }
+
+// TO make it in O(n) space
+
+static int paths(int m, int n){
+	if(m==1 || n==1) return 1;
+	int[] mat = new int[n];
+	for(int j=0; j<n; j++) mat[j]= 1;
+
+	for(int i=1; i< m; i++){
+		for(int j=1; j<n; j++) {
+			mat[j] = mat[j] + mat[j-1];
+		}
+	 }
+	return mat[n-1];
+}
