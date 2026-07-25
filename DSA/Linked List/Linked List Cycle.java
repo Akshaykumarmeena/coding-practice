@@ -31,3 +31,30 @@ Given head of a linked list, return true if the list contains a cycle — i.e., 
     	}
 	return false;
 }
+
+
+
+// While Practcing
+
+import java.util.*;
+
+public class Practice{
+
+    static boolean isCycle(ListNode head){
+
+        if(head == null || head.next == null) return false;
+
+        ListNode slow = head;
+        ListNode fast = head.next;
+
+        while(slow!=null && fast!=null && slow!=fast){
+            slow = slow.next;
+            if(fast.next != null) fast = fast.next.next;
+            else return false;
+        }
+
+        if(slow == fast) return true;
+        else return false;
+    }
+
+}
