@@ -71,32 +71,6 @@ static List<int[]> finalInterval(List<int[]> list){
     int i = 0;
     int[] tmp = new int[2];
     tmp[0] = list.get(0)[0];
-    tmp[1] = list.get(0)[1];
-    
-    while(i < n-1){
-        int nextStart = list.get(i+1)[0];
-        int nextEnd = list.get(i+1)[1];
-        
-        if(tmp[1] < nextStart) {
-            result.add(new int[]{tmp[0], tmp[1]});
-            tmp[0] = nextStart;
-            tmp[1] = nextEnd;
-        } else {
-            tmp[1] = Math.max(tmp[1], nextEnd);
-        }
-        i++;
-    }
-    result.add(new int[]{tmp[0], tmp[1]});
-    return result;
-}
-
-static List<int[]> finalInterval(List<int[]> list){
-    List<int[]> result = new ArrayList<>();
-    list.sort((a, b) -> Integer.compare(a[0], b[0]));
-    int n = list.size();
-    int i = 0;
-    int[] tmp = new int[2];
-    tmp[0] = list.get(0)[0];
     tmp[1] = list.get(0)[1];  // ALSO initialize tmp[1] up front, not just tmp[0]
     
     while(i < n-1){
