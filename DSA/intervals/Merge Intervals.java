@@ -36,3 +36,82 @@ Given an array of intervals where intervals[i] = [start_i, end_i], merge all ove
 	}
 	return result;
 }
+
+
+
+####################################### Method 2 #########################################################################################################################
+
+
+
+/*
+ * Problem: Merge Intervals
+ * Pattern: Sort + Greedy Sweep
+ * Constraints: 1<=intervals.length<=10^4, 0<=start<=end<=10^4
+ * Time: O(n log n) — sort dominates, Space: O(n) for result
+ * Key insight: sort by start first. Track a RUNNING merged interval
+ *   (tmp), comparing the NEXT interval's start against tmp's CURRENT
+ *   extent (tmp[1]) — not against any single interval's own raw end.
+ *   This distinction matters because tmp[1] may already be extended
+ *   beyond any individual interval's end due to earlier merges (e.g. a
+ *   large interval fully containing several smaller ones).
+ * Gotcha: use next[0] <= tmp[1] (or tmp[1] < nextStart for the non-
+ *   overlap branch) — touching intervals (end == next start) should
+ *   still merge, per the problem's rule
+ * Gotcha: when saving a completed group to result, use new int[]{...}
+ *   (a snapshot), never add a reused/mutable array reference directly —
+ *   same aliasing trap as Backtracking's path.add() vs new ArrayList<>(path)
+ */
+
+
+
+static List<int[]> finalInterval(List<int[]> list){
+    List<int[]> result = new ArrayList<>();
+    list.sort((a, b) -> Integer.compare(a[0], b[0]));
+    int n = list.size();
+    int i = 0;
+    int[] tmp = new int[2];
+    tmp[0] = list.get(0)[0];
+    tmp[1] = list.get(0)[1];
+    
+    while(i < n-1){
+        int nextStart = list.get(i+1)[0];
+        int nextEnd = list.get(i+1)[1];
+        
+        if(tmp[1] < nextStart) {
+            result.add(new int[]{tmp[0], tmp[1]});
+            tmp[0] = nextStart;
+            tmp[1] = nextEnd;
+        } else {
+            tmp[1] = Math.max(tmp[1], nextEnd);
+        }
+        i++;
+    }
+    result.add(new int[]{tmp[0], tmp[1]});
+    return result;
+}
+
+static List<int[]> finalInterval(List<int[]> list){
+    List<int[]> result = new ArrayList<>();
+    list.sort((a, b) -> Integer.compare(a[0], b[0]));
+    int n = list.size();
+    int i = 0;
+    int[] tmp = new int[2];
+    tmp[0] = list.get(0)[0];
+    tmp[1] = list.get(0)[1];  // ALSO initialize tmp[1] up front, not just tmp[0]
+    
+    while(i < n-1){
+        int nextStart = list.get(i+1)[0];
+        int nextEnd = list.get(i+1)[1];
+        
+        if(tmp[1] < nextStart) {  // compare against the RUNNING merged end, not the raw current interval's end
+            result.add(new int[]{tmp[0], tmp[1]});
+            tmp[0] = nextStart;
+            tmp[1] = nextEnd;
+        } else {
+            tmp[1] = Math.max(tmp[1], nextEnd);  // extend the merge if overlapping
+        }
+        i++;
+    }
+    result.add(new int[]{tmp[0], tmp[1]});  // also fix the final add to use the snapshot syntax
+    return result;
+}
